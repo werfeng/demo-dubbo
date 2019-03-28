@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <mvc:annotation-driven/>
+    <context:annotation-config/>
+    <!-- 扫描组件 -->
+    <context:component-scan base-package="com.xwf.*"/>
+    <dubbo:application name="provider"/>
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="zookeeper://127.0.0.1:2181" />
+    <!-- <dubbo:registry  address="N/A" /> -->
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!-- 当ProtocolConfig和ServiceConfig某属性没有配置时,采用此缺省值 -->
+    <dubbo:provider timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
+
+    <!--<bean id="sayService" class="com.xwf.provder.SayServiceImpl"></bean>
+    &lt;!&ndash; 暴露服务接口 一个服务可以用多个协议暴露，一个服务也可以注册到多个注册中心&ndash;&gt;
+    <dubbo:service interface="com.xwf.api.SayService" ref="sayService"/>-->
+
+    <!--<dubbo:service interface="com.xwf.api.SayService" ref="sayService"/>-->
+    <dubbo:annotation package="com.xwf.provder"/>
+
+</beans>

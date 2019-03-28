@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <mvc:annotation-driven/>
+    <context:annotation-config/>
+    <!-- 扫描组件 -->
+    <context:component-scan base-package="com.xwf.*"/>
+
+    <dubbo:application name="consumer"/>
+
+    <dubbo:registry protocol="zookeeper" address="zookeeper://127.0.0.1:2181" />
+
+    <!-- 用户服务接口 -->
+    <!--<dubbo:reference id="sayService" interface="com.xwf.api.SayService" url="dubbo://127.0.0.1:20880"/>-->
+    <dubbo:annotation package="com.xwf.consumer"/>
+</beans>
