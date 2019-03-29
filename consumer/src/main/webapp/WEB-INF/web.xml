@@ -8,9 +8,9 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath*:application.xml</param-value>
     </context-param>-->
-    <listener>
+    <!--<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    </listener>-->
     <!--  这个地方加载的是 servlet 的变量的配置文件，它们属于 controller 级别的配置
         1.如果不配置这个 servlet-context.xml 的配置文件位置，
         那么默认就会去/WEB-INF/servlet-context.xml 下面去寻找这个文件
